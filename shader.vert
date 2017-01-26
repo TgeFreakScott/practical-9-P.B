@@ -1,9 +1,8 @@
-void main(void)
-{
-   vec4 a = gl_Vertex;
-   a.x = a.x * 0.5;
-   a.y = a.y * 0.5;
-
-
-   gl_Position = gl_ModelViewProjectionMatrix * a;
+#version 400
+in vec4 sv_position;
+in vec4 sv_color;
+out vec4 color;
+void main() {
+	color = sv_color;
+	gl_Position = sv_position;
 }

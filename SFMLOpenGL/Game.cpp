@@ -44,7 +44,7 @@ void Game::run()
 
 typedef struct
 {
-	float coordinate[8];
+	float coordinate[3];
 	float color[4];
 } Vertex;
 
@@ -70,6 +70,24 @@ void Game::initialize()
 
 	glewInit();
 
+	std::ifstream vert;
+	std::ifstream frag;
+
+	vert.open("../shader.vert");
+	frag.open("../shader.frag");
+
+	std::stringstream vertss;
+	vertss << vert.rdbuf();
+	string vertString = vertss.str();
+	const char * vertSource = vertString.c_str();
+
+
+	std::stringstream fragss;
+	fragss << frag.rdbuf();
+	string fragString = fragss.str();
+	const char * fragSource = fragString.c_str();
+
+
 	/* Vertices counter-clockwise winding */
 	vertex[0].coordinate[0] = -0.5f;		
 	vertex[0].coordinate[1] = -0.5f;		
@@ -85,74 +103,31 @@ void Game::initialize()
 
 
 
-	vertex[3].coordinate[3] = -0.5f;		
-	vertex[3].coordinate[4] = -0.5f;		
-	vertex[3].coordinate[5] = 0.5f;			
+	vertex[3].coordinate[0] = -0.5f;		
+	vertex[3].coordinate[1] = -0.5f;		
+	vertex[3].coordinate[2] = 0.5f;			
 											
-	vertex[4].coordinate[3] = -0.5f;	//triangle 2
-	vertex[4].coordinate[4] = 0.5f;
-	vertex[4].coordinate[5] = 0.5f;			
+	vertex[4].coordinate[0] = -0.5f;	//triangle 2
+	vertex[4].coordinate[1] = 0.5f;
+	vertex[4].coordinate[2] = 0.5f;			
 											
-	vertex[5].coordinate[3] = 0.5f;			
-	vertex[5].coordinate[4] = -0.5f;			
-	vertex[5].coordinate[5] = 0.5f;			
+	vertex[5].coordinate[0] = 0.5f;			
+	vertex[5].coordinate[1] = -0.5f;			
+	vertex[5].coordinate[2] = 0.5f;			
 
 
 
-	vertex[6].coordinate[6] = 0.5f;			
-	vertex[6].coordinate[7] = 0.5f;			
-	vertex[6].coordinate[8] = -0.5f;			
+	vertex[6].coordinate[0] = 0.5f;			
+	vertex[6].coordinate[1] = 0.5f;			
+	vertex[6].coordinate[2] = -0.5f;			
 											
-	vertex[7].coordinate[6] = 0.5f;			
-	vertex[7].coordinate[7] = 0.5f;		//triangle 3
-	vertex[7].coordinate[8] = 0.5f;			
+	vertex[7].coordinate[0] = 0.5f;			
+	vertex[7].coordinate[1] = 0.5f;		//triangle 3
+	vertex[7].coordinate[2] = 0.5f;			
 											
-	vertex[8].coordinate[6] = 0.5f;			
-	vertex[8].coordinate[7] = 0.5f;			
-	vertex[8].coordinate[8] = 0.0f;			
-
-
-	vertex[0].coordinate[0] = -0.5f;
-	vertex[0].coordinate[1] = -0.5f;
-	vertex[0].coordinate[2] = -0.5f;
-
-	vertex[1].coordinate[0] = 0.5f;		//triangle 4
-	vertex[1].coordinate[1] = -0.5f;
-	vertex[1].coordinate[2] = 0.0f;
-
-	vertex[2].coordinate[0] = -0.5f;
-	vertex[2].coordinate[1] = 0.5f;
-	vertex[2].coordinate[2] = -0.5f;
-
-
-
-	vertex[3].coordinate[3] = -0.5f;
-	vertex[3].coordinate[4] = -0.5f;
-	vertex[3].coordinate[5] = 0.5f;
-
-	vertex[4].coordinate[3] = -0.5f;	//triangle 5
-	vertex[4].coordinate[4] = 0.5f;
-	vertex[4].coordinate[5] = 0.5f;
-
-	vertex[5].coordinate[3] = 0.5f;
-	vertex[5].coordinate[4] = -0.5f;
-	vertex[5].coordinate[5] = 0.5f;
-
-
-
-	vertex[6].coordinate[6] = 0.5f;
-	vertex[6].coordinate[7] = 0.5f;
-	vertex[6].coordinate[8] = -0.5f;
-
-	vertex[7].coordinate[6] = 0.5f;
-	vertex[7].coordinate[7] = 0.5f;		//triangle 6
-	vertex[7].coordinate[8] = 0.5f;
-
-	vertex[8].coordinate[6] = 0.5f;
-	vertex[8].coordinate[7] = 0.5f;
-	vertex[8].coordinate[8] = 0.0f;
-
-
+	vertex[8].coordinate[0] = 0.5f;			
+	vertex[8].coordinate[1] = 0.5f;			
+	vertex[8].coordinate[2] = 0.0f;			
 
 
 	vertex[0].color[0] = 0.0f;
@@ -193,17 +168,21 @@ void Game::initialize()
 	/*Index of Poly / Triangle to Draw */
 	triangles[0] = 0;   triangles[1] = 1;   triangles[2] = 2;
 	triangles[3] = 3;   triangles[4] = 4;   triangles[5] = 5;
+
 	triangles[6] = 6;   triangles[7] = 7;   triangles[8] = 8;
 	triangles[9] = 9;    triangles[10] = 10;   triangles[11] = 11;
+
 	triangles[12] = 12;  triangles[13] = 13;   triangles[14] = 14;   
 	triangles[15] = 15;  triangles[16] = 16;   triangles[17] = 17;   
+
 	triangles[18] = 18;	 triangles[19] = 19;   triangles[20] = 20;
 	triangles[21] = 21;   triangles[22] = 22;	triangles[23] = 23;
+
 	triangles[24] = 24;   triangles[25] = 25;	triangles[26] = 26;
 	triangles[27] = 27;   triangles[28] = 28;	triangles[29] = 29;
+
 	triangles[30] = 30;   triangles[31] = 31;	triangles[32] = 32;
 	triangles[33] = 33;   triangles[34] = 34;	triangles[35] = 35;
-	triangles[36] = 36;
 
 	/* Create a new VBO using VBO id */
 	glGenBuffers(1, vbo);
@@ -212,23 +191,16 @@ void Game::initialize()
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
 
 	/* Upload vertex data to GPU */
-	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * 7, vertex, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * 8, vertex, GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	glGenBuffers(1, &index);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, index);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLubyte) * 3, triangles, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLubyte) * 36, triangles, GL_STATIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 	/* Vertex Shader which would normally be loaded from an external file */
-	const char* vs_src = "#version 400\n\r"
-		"in vec4 sv_position;"
-		"in vec4 sv_color;"
-		"out vec4 color;"
-		"void main() {"
-		"	color = sv_color;"
-		"	gl_Position = sv_position;"
-		"}"; //Vertex Shader Src
+	const char* vs_src = vertSource; //Vertex Shader Src
 
 	DEBUG_MSG("Setting Up Vertex Shader");
 
@@ -249,12 +221,7 @@ void Game::initialize()
 	}
 
 	/* Fragment Shader which would normally be loaded from an external file */
-	const char* fs_src = "#version 400\n\r"
-		"in vec4 color;"
-		"out vec4 fColor;"
-		"void main() {"
-		"	fColor = vec4(0.0f, 1.0f, 0.0f, 1.0f);"
-		"}"; //Fragment Shader Src
+	const char* fs_src = fragSource; //Fragment Shader Src
 
 	DEBUG_MSG("Setting Up Fragment Shader");
 
@@ -361,7 +328,7 @@ void Game::render()
 
 	/*	As the data positions will be updated by the this program on the
 		CPU bind the updated data to the GPU for drawing	*/
-	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * 3, vertex, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * 8, vertex, GL_STATIC_DRAW);
 
 	/*	Draw Triangle from VBO	(set where to start from as VBO can contain
 		model components that 'are' and 'are not' to be drawn )	*/
@@ -375,7 +342,7 @@ void Game::render()
 	glEnableVertexAttribArray(positionID);
 	glEnableVertexAttribArray(colorID);
 
-	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_BYTE, (char*)NULL + 0);
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_BYTE, (char*)NULL + 0);
 
 	window.display();
 
