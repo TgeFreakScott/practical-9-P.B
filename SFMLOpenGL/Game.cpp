@@ -91,43 +91,43 @@ void Game::initialize()
 	/* Vertices counter-clockwise winding */
 	vertex[0].coordinate[0] = -0.5f;		
 	vertex[0].coordinate[1] = -0.5f;		
-	vertex[0].coordinate[2] = -0.5f;			
+	vertex[0].coordinate[2] = 0.0f;			
 											
 	vertex[1].coordinate[0] = 0.5f;		//triangle 1
 	vertex[1].coordinate[1] = -0.5f;
 	vertex[1].coordinate[2] = 0.0f;			
 											
-	vertex[2].coordinate[0] = -0.5f;			
+	vertex[2].coordinate[0] = 0.5f;			
 	vertex[2].coordinate[1] = 0.5f;			
-	vertex[2].coordinate[2] = -0.5f;			
+	vertex[2].coordinate[2] = 0.0f;			
 
 
 
 	vertex[3].coordinate[0] = -0.5f;		
 	vertex[3].coordinate[1] = -0.5f;		
-	vertex[3].coordinate[2] = 0.5f;			
+	vertex[3].coordinate[2] = 1.0f;			
 											
-	vertex[4].coordinate[0] = -0.5f;	//triangle 2
-	vertex[4].coordinate[1] = 0.5f;
-	vertex[4].coordinate[2] = 0.5f;			
+	vertex[4].coordinate[0] = 0.5f;	//triangle 2
+	vertex[4].coordinate[1] = -0.5f;
+	vertex[4].coordinate[2] = 1.0f;			
 											
 	vertex[5].coordinate[0] = 0.5f;			
 	vertex[5].coordinate[1] = -0.5f;			
-	vertex[5].coordinate[2] = 0.5f;			
+	vertex[5].coordinate[2] = 1.0f;			
 
 
 
 	vertex[6].coordinate[0] = 0.5f;			
 	vertex[6].coordinate[1] = 0.5f;			
-	vertex[6].coordinate[2] = -0.5f;			
+	vertex[6].coordinate[2] = 1.0f;			
 											
-	vertex[7].coordinate[0] = 0.5f;			
+	vertex[7].coordinate[0] = -0.5f;			
 	vertex[7].coordinate[1] = 0.5f;		//triangle 3
-	vertex[7].coordinate[2] = 0.5f;			
+	vertex[7].coordinate[2] = 1.0f;			
 											
-	vertex[8].coordinate[0] = 0.5f;			
+/*	vertex[8].coordinate[0] = 0.5f;			
 	vertex[8].coordinate[1] = 0.5f;			
-	vertex[8].coordinate[2] = 0.0f;			
+	vertex[8].coordinate[2] = 0.0f;	*/		
 
 
 	vertex[0].color[0] = 0.0f;
