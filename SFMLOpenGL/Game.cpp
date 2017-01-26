@@ -115,8 +115,6 @@ void Game::initialize()
 	vertex[5].coordinate[1] = -0.5f;			
 	vertex[5].coordinate[2] = 1.0f;			
 
-
-
 	vertex[6].coordinate[0] = 0.5f;			
 	vertex[6].coordinate[1] = 0.5f;			
 	vertex[6].coordinate[2] = 1.0f;			
@@ -167,22 +165,22 @@ void Game::initialize()
 
 	/*Index of Poly / Triangle to Draw */
 	triangles[0] = 0;   triangles[1] = 1;   triangles[2] = 2;
-	triangles[3] = 3;   triangles[4] = 4;   triangles[5] = 5;
+	triangles[3] = 0;   triangles[4] = 2;   triangles[5] = 3;
 
-	triangles[6] = 6;   triangles[7] = 7;   triangles[8] = 8;
-	triangles[9] = 9;    triangles[10] = 10;   triangles[11] = 11;
+	triangles[6] = 4;   triangles[7] = 6;   triangles[8] = 7;
+	triangles[9] = 4;    triangles[10] = 5;   triangles[11] = 6;
 
-	triangles[12] = 12;  triangles[13] = 13;   triangles[14] = 14;   
-	triangles[15] = 15;  triangles[16] = 16;   triangles[17] = 17;   
+	triangles[12] = 3;  triangles[13] = 2;   triangles[14] = 6;   
+	triangles[15] = 3;  triangles[16] = 6;   triangles[17] = 7;   
 
-	triangles[18] = 18;	 triangles[19] = 19;   triangles[20] = 20;
-	triangles[21] = 21;   triangles[22] = 22;	triangles[23] = 23;
+	triangles[18] = 0;	 triangles[19] = 1;   triangles[20] = 5;
+	triangles[21] = 0;   triangles[22] = 5;	triangles[23] = 4;
 
-	triangles[24] = 24;   triangles[25] = 25;	triangles[26] = 26;
-	triangles[27] = 27;   triangles[28] = 28;	triangles[29] = 29;
+	triangles[24] = 4;   triangles[25] = 0;	 triangles[26] = 7;
+	triangles[27] = 0;   triangles[28] = 3;	triangles[29] = 7;
 
-	triangles[30] = 30;   triangles[31] = 31;	triangles[32] = 32;
-	triangles[33] = 33;   triangles[34] = 34;	triangles[35] = 35;
+	triangles[30] = 5;   triangles[31] = 6;	triangles[32] = 1;
+	triangles[33] = 1;   triangles[34] = 6;	triangles[35] = 2;
 
 	/* Create a new VBO using VBO id */
 	glGenBuffers(1, vbo);
